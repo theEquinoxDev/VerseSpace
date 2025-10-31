@@ -18,6 +18,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/poems", poemRoutes);
 
+app.get("/", (req, res) => {
+  res.send("VerseSpace backend is live");
+});
+
+
 app.get("/api/test", (req, res) => {
   res.json({ message: "VerseSpace backend is running successfully" });
 });
