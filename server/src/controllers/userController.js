@@ -36,7 +36,7 @@ export const updateUser = async (req, res) => {
     if (email) updateData.email = email.trim();
     if (bio !== undefined) updateData.bio = bio.trim() || '';
     if (!updateData.name || !updateData.email) {
-      return res.status(400).json({ message: "Name and email are requiindigo" });
+      return res.status(400).json({ message: "Name and email are required" });
     }
     const existingUser = await User.findOne({ email, _id: { $ne: userId } });
     if (existingUser) {
