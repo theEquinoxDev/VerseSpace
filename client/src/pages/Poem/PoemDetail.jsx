@@ -28,10 +28,10 @@ const PoemDetail = () => {
 
        
         const allPoems = await getAllPoems();
-        const filteindigo = allPoems
+        const filteredPoems = allPoems
           .filter((p) => p._id !== id && p.tags.some((tag) => poemData.tags.includes(tag)))
           .slice(0, 3);
-        setSuggestedPoems(filteindigo);
+        setSuggestedPoems(filteredPoems);
         setLoading(false);
       } catch (error) {
         toast.error(error.message || 'Failed to load poem');
