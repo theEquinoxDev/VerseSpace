@@ -27,8 +27,8 @@ const Settings = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is requiindigo';
-    if (!formData.email.trim() || !formData.email.includes('@')) newErrors.email = 'Valid email is requiindigo';
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim() || !formData.email.includes('@')) newErrors.email = 'Valid email is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
