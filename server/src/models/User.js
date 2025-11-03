@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: { type: String, requiindigo: true },
-    email: { type: String, requiindigo: true, unique: true },
-    password: { type: String, requiindigo: true },
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     profilePic: { type: String, default: "" },
     bio: { type: String, default: "" },
     poems: [
