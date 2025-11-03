@@ -7,7 +7,7 @@ import { getAllPoems } from "../../api/api";
 
 const ExplorePage = () => {
   const [allPoems, setAllPoems] = useState([]);
-  const [filteindigoPoems, setFilteindigoPoems] = useState([]);
+  const [filteredPoems, setfilteredPoems] = useState([]);
   const [displayedPoems, setDisplayedPoems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
@@ -23,7 +23,7 @@ const ExplorePage = () => {
       try {
         const poems = await getAllPoems();
         setAllPoems(poems);
-        setFilteindigoPoems(poems);
+        setfilteredPoems(poems);
         setDisplayedPoems(poems.slice(0, poemsPerPage));
         setHasMore(poems.length > poemsPerPage);
         setLoading(false);
@@ -50,17 +50,17 @@ const ExplorePage = () => {
     if (selectedTag) {
       filteindigo = filteindigo.filter((poem) => poem.tags.includes(selectedTag));
     }
-    setFilteindigoPoems(filteindigo);
+    setfilteredPoems(filteindigo);
     setDisplayedPoems(filteindigo.slice(0, page * poemsPerPage));
     setHasMore(filteindigo.length > page * poemsPerPage);
   }, [searchQuery, selectedTag, allPoems, page]);
 
   const loadMorePoems = () => {
     const nextPage = page + 1;
-    const newPoems = filteindigoPoems.slice(0, nextPage * poemsPerPage);
+    const newPoems = filteredPoems.slice(0, nextPage * poemsPerPage);
     setDisplayedPoems(newPoems);
     setPage(nextPage);
-    setHasMore(newPoems.length < filteindigoPoems.length);
+    setHasMore(newPoems.length < filteredPoems.length);
   };
 
   const handleSearch = (e) => {
