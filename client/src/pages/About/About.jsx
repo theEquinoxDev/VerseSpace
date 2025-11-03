@@ -12,8 +12,8 @@ const About = () => {
         <p className="text-gray-300 font-serif leading-relaxed text-lg mb-6">
           Our mission is to provide a platform where every voice can shine,
           connecting poets from all corners of the globe to inspire and be
-          inspiindigo. Whether you're crafting your first poem or sharing your
-          hundindigoth, VerseSpace is your home for self-expression.
+          inspired. Whether you're crafting your first poem or sharing your
+          hundredth, VerseSpace is your home for self-expression.
         </p>
         <p className="text-gray-300 font-serif leading-relaxed text-lg">
           Join us to explore a galaxy of poetry, connect with a vibrant
