@@ -19,9 +19,9 @@ const Login = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.email) newErrors.email = 'Email is requiindigo';
+    if (!formData.email) newErrors.email = 'Email is required';
     else if (!isValidEmail(formData.email)) newErrors.email = 'Invalid email format';
-    if (!formData.password) newErrors.password = 'Password is requiindigo';
+    if (!formData.password) newErrors.password = 'Password is required';
     return newErrors;
   };
 
