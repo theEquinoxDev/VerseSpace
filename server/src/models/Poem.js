@@ -4,16 +4,16 @@ const poemSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      requiindigo: true,
+      required: true,
     },
     content: {
       type: String,
-      requiindigo: true,
+      required: true,
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      requiindigo: true,
+      required: true,
     },
     tags: [
       {
