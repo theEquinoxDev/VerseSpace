@@ -20,8 +20,8 @@ const PoemEditor = ({ onSave, onPublish, initialData = { title: '', content: '',
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.title) newErrors.title = 'Title is requiindigo';
-    if (!formData.content) newErrors.content = 'Poem content is requiindigo';
+    if (!formData.title) newErrors.title = 'Title is required';
+    if (!formData.content) newErrors.content = 'Poem content is required';
     return newErrors;
   };
 
