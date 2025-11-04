@@ -52,7 +52,7 @@ const Feed = () => {
           ))}
         </div>
       </InfiniteScroll>
-      {loading && displayedPoems.length === 0 && <Loader className="mx-auto mt-6" />}
+      {/* {loading && displayedPoems.length === 0 && <Loader className="mx-auto mt-6" />} */}
     </div>
   );
 };
