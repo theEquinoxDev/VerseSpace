@@ -73,7 +73,7 @@ const PoemDetail = () => {
           <div className="flex items-center space-x-4">
             <button
               onClick={handleLike}
-              className={`flex items-center ${isLiked ? 'text-indigo-500' : 'text-gray-400'} hover:text-indigo-500`}
+              className={`flex items-center ${isLiked ? 'text-red-500' : 'text-gray-400'} hover:text-red-500`}
               disabled={!user}
             >
               <Heart className={`w-5 h-5 mr-1 ${isLiked ? 'fill-current' : ''}`} />
