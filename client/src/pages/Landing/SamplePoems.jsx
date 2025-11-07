@@ -13,7 +13,7 @@ const SamplePoems = () => {
     const fetchPoems = async () => {
       try {
         const response = await getAllPoems();
-        setPoems(response.slice(0, 6)); // only 6 will be visible on the landing page if user is not logged in
+        setPoems(response.slice(0, 6));               // only 6 will be visible on the landing page if user is not logged in
         setLoading(false);
       } catch (error) {
         

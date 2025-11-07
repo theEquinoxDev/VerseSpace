@@ -1,6 +1,5 @@
-// src/components/Footer.jsx
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Github, Instagram, Linkedin, X } from 'lucide-react';
+import { Github, Linkedin, X } from 'lucide-react';
 
 const Footer = () => {
   const location = useLocation();
@@ -56,7 +55,6 @@ const Footer = () => {
           {[
             { href: 'https://github.com/theEquinoxDev/VerseSpace', Icon: Github },
             { href: 'https://x.com/theEquinoxDev', Icon: X },
-            { href: 'https://www.instagram.com/adiii_7667/', Icon: Instagram },
             { href: 'https://www.linkedin.com/in/theequinoxdev/', Icon: Linkedin },
           ].map(({ href, Icon }) => (
             <a

@@ -1,4 +1,3 @@
-// src/pages/Dashboard/Sidebar.jsx
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { PenTool, BookOpen, Heart, User, Tag } from 'lucide-react';
