@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
-import useUserStore from './store/userStore';
+import { Analytics } from '@vercel/analytics/react';
 
-useUserStore.getState().initializeAuth();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
+    <Analytics />
   </React.StrictMode>
 );
