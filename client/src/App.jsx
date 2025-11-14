@@ -1,24 +1,34 @@
-import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import useUserStore from './store/userStore';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import LandingPage from './pages/Landing/LandingPage';
-import Login from './pages/Auth/Login';
-import Signup from './pages/Auth/Signup';
-import Dashboard from './pages/Dashboard/Dashboard';
-import WritePoem from './pages/WritePoem/WritePoem';
-import ProfilePage from './pages/Profile/ProfilePage';
-import ExplorePage from './pages/Explore/ExplorePage';
-import PoemDetail from './pages/Poem/PoemDetail';
-import About from './pages/About/About';
-import Whisper from './pages/Whisper/Whisper';
-import LikedPage from './pages/Liked/LikedPage'; 
-import { Toaster } from 'react-hot-toast';
-import Settings from './pages/Profile/Settings';
+import { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import useUserStore from "./store/userStore";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import LandingPage from "./pages/Landing/LandingPage";
+import Login from "./pages/Auth/Login";
+import Signup from "./pages/Auth/Signup";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import WritePoem from "./pages/WritePoem/WritePoem";
+import ProfilePage from "./pages/Profile/ProfilePage";
+import ExplorePage from "./pages/Explore/ExplorePage";
+import PoemDetail from "./pages/Poem/PoemDetail";
+import About from "./pages/About/About";
+import Whisper from "./pages/Whisper/Whisper";
+import LikedPage from "./pages/Liked/LikedPage";
+import { Toaster } from "react-hot-toast";
+import Settings from "./pages/Profile/Settings";
 
 const PrivateRoute = ({ children }) => {
-  const { isAuthenticated } = useUserStore();
+  const { isAuthenticated, isAuthReady } = useUserStore();
+
+  if (!isAuthReady) {
+    return <div className="text-center mt-10">Loading...</div>;
+  }
+
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
@@ -37,10 +47,13 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={isAuthenticated ? <Navigate to="/dashboard" /> : <LandingPage />}
+              element={
+                isAuthenticated ? <Navigate to="/dashboard" /> : <LandingPage />
+              }
             />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+
             <Route
               path="/dashboard"
               element={
@@ -49,6 +62,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+
             <Route
               path="/write"
               element={
@@ -57,6 +71,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+
             <Route
               path="/profile/:id"
               element={
@@ -65,6 +80,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+
             <Route
               path="/liked"
               element={
@@ -73,10 +89,16 @@ function App() {
                 </PrivateRoute>
               }
             />
+
             <Route
-    path="/settings"
-    element={<PrivateRoute><Settings /></PrivateRoute>} 
-  />
+              path="/settings"
+              element={
+                <PrivateRoute>
+                  <Settings />
+                </PrivateRoute>
+              }
+            />
+
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/poem/:id" element={<PoemDetail />} />
             <Route path="/about" element={<About />} />
@@ -84,8 +106,13 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
+
         <Footer />
-        <Toaster position="top-right" toastOptions={{ style: { background: '#1f2937', color: '#fff' } }} />
+
+        <Toaster
+          position="top-right"
+          toastOptions={{ style: { background: "#1f2937", color: "#fff" } }}
+        />
       </div>
     </Router>
   );
