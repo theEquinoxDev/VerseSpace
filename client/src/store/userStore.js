@@ -17,8 +17,9 @@ const useUserStore = create(
       user: null,
       isAuthenticated: false,
       loading: false,
+      isAuthReady: false,
 
-        setUser: (updatedUser) => set({ user: updatedUser }),
+      setUser: (updatedUser) => set({ user: updatedUser }),
 
       initializeAuth: async () => {
         const token = getToken();
@@ -27,6 +28,7 @@ const useUserStore = create(
           try {
             set({ loading: true });
             const user = await getUserProfile("me");
+
             set({
               user: {
                 id: user._id,
@@ -38,11 +40,16 @@ const useUserStore = create(
               isAuthenticated: true,
             });
           } catch (error) {
-            set({ user: null, isAuthenticated: false });
+            set({
+              user: null,
+              isAuthenticated: false,
+            });
             localStorage.removeItem("token");
           } finally {
-            set({ loading: false });
+            set({ loading: false, isAuthReady: true });
           }
+        } else {
+          set({ isAuthenticated: false, isAuthReady: true });
         }
       },
 
@@ -51,6 +58,7 @@ const useUserStore = create(
         try {
           const response = await signup(userData);
           localStorage.setItem("token", response.token);
+
           set({
             user: {
               id: response.user.id,
@@ -61,6 +69,7 @@ const useUserStore = create(
             },
             isAuthenticated: true,
           });
+
           return response;
         } catch (error) {
           throw error;
@@ -74,6 +83,7 @@ const useUserStore = create(
         try {
           const response = await signin(userData);
           localStorage.setItem("token", response.token);
+
           set({
             user: {
               id: response.user.id,
@@ -84,6 +94,7 @@ const useUserStore = create(
             },
             isAuthenticated: true,
           });
+
           return response;
         } catch (error) {
           throw error;
@@ -96,6 +107,7 @@ const useUserStore = create(
         set({ loading: true });
         try {
           const updatedUser = await updateUser(userId, userData);
+
           set({
             user: {
               id: updatedUser._id,
@@ -105,6 +117,7 @@ const useUserStore = create(
               profilePic: updatedUser.profilePic || "",
             },
           });
+
           return updatedUser;
         } catch (error) {
           throw error;
@@ -117,6 +130,7 @@ const useUserStore = create(
         set({ loading: true });
         try {
           const updatedUser = await updateUserAvatar(userId, avatarFile);
+
           set({
             user: {
               id: updatedUser._id,
@@ -126,6 +140,7 @@ const useUserStore = create(
               profilePic: updatedUser.profilePic || "",
             },
           });
+
           return updatedUser;
         } catch (error) {
           throw error;
