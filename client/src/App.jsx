@@ -21,23 +21,28 @@ import Whisper from "./pages/Whisper/Whisper";
 import LikedPage from "./pages/Liked/LikedPage";
 import { Toaster } from "react-hot-toast";
 import Settings from "./pages/Profile/Settings";
+import Loader from "./components/Loader";
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated, isAuthReady } = useUserStore();
 
   if (!isAuthReady) {
-    return <div className="text-center mt-10">Loading...</div>;
+    return (
+      <div className="flex justify-center mt-10">
+        <Loader />
+      </div>
+    );
   }
 
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
 
 function App() {
-  const { initializeAuth, isAuthenticated } = useUserStore();
+  const { initializeAuth, isAuthenticated, isAuthReady } = useUserStore();
 
   useEffect(() => {
     initializeAuth();
-  }, [initializeAuth]);
+  }, []);
 
   return (
     <Router>
@@ -48,7 +53,15 @@ function App() {
             <Route
               path="/"
               element={
-                isAuthenticated ? <Navigate to="/dashboard" /> : <LandingPage />
+                !isAuthReady ? (
+                  <div className="flex justify-center mt-10">
+                    <Loader />
+                  </div>
+                ) : isAuthenticated ? (
+                  <Navigate to="/dashboard" />
+                ) : (
+                  <LandingPage />
+                )
               }
             />
             <Route path="/login" element={<Login />} />
