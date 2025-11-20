@@ -53,11 +53,7 @@ function App() {
             <Route
               path="/"
               element={
-                !isAuthReady ? (
-                  <div className="flex justify-center mt-10">
-                    <Loader />
-                  </div>
-                ) : isAuthenticated ? (
+                isAuthenticated ? (
                   <Navigate to="/dashboard" />
                 ) : (
                   <LandingPage />
