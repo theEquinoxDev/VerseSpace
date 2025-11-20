@@ -2,5 +2,11 @@
   "buildCommand": "npm install --prefer-online && npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "installCommand": "npm install --prefer-online"
+  "installCommand": "npm install --prefer-online",
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ]
 }
